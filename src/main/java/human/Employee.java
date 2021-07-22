@@ -1,5 +1,7 @@
 package human;
 
+import viewdepartments.View;
+
 import java.math.BigDecimal;
 
 public class Employee {
@@ -19,9 +21,9 @@ public class Employee {
         return salary;
     }
 
-     void print(int maxSize) {
-        System.out.format("%" + maxSize+ "s - %s %n", getName(), getSalary());
-        //   System.out.println(employee.getName() + " " + " - " + employee.getSalary());
+     String print(Department department) {
+        return  String.format("%-" + department.getMaxSizeName()+ "s - %"+department.getMaxSizeSalary()+"s  %n", getName(), getSalary());
+
     }
 
     public String getName() {

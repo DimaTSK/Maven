@@ -1,5 +1,7 @@
 package human;
 
+import viewdepartments.View;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -9,12 +11,47 @@ public class Department {
     private List<Employee> employeeList = new ArrayList<>();
     private String name;
 
+    private int maxSizeName;
+    private  int maxSizeSalary;
+
+
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getMaxSizeName() {
+        return maxSizeName;
+    }
+
+    public void setMaxSizeName(int maxSizeName) {
+        this.maxSizeName = maxSizeName;
+    }
+
+    public int getMaxSizeSalary() {
+        return maxSizeSalary;
+    }
+
+    public void setMaxSizeSalary(int maxSizeSalary) {
+        this.maxSizeSalary = maxSizeSalary;
+    }
 
     public Department(String name) {
         this.name = name;
     }
 
     public void addEmployee(Employee employee) {
+
+        if (employee.getName().length()>getMaxSizeName()){
+            setMaxSizeName(employee.getName().length());
+        }
+        if (employee.getSalary().toString().length()>getMaxSizeSalary()){
+            setMaxSizeSalary(employee.getSalary().toString().length());
+        }
+
         getEmployeeList().add(employee);
     }
 
@@ -51,11 +88,14 @@ public class Department {
         return getSalary().divide(BigDecimal.valueOf(getEmployeeList().size()), 2, RoundingMode.HALF_UP);
     }
 
-    public void print(int maxSize) {
-        System.out.println("Department - " + getName() + " : " + " Average salary -  " + getAvgSalary());
+    public String print() {
+        StringBuilder dataDepartment = new StringBuilder();
+        dataDepartment.append("Department - ").append(getName()).append(" : ").append(" Average salary -  ").append(getAvgSalary()).append("\n");
         for (Employee employee : getEmployeeList()) {
-            employee.print(maxSize);
+            dataDepartment.append(employee.print(this));
         }
+        dataDepartment.append("-------\n");
+        return dataDepartment.toString();
     }
 
 

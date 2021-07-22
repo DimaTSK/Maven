@@ -23,14 +23,14 @@ public class ReadFileTxt implements ReadFile {
                 String line = scanner.nextLine();
                 String[] split = line.split(";");
                 if (split.length != 3) {
-                    System.out.println("Format not support  - " + line);
+                    System.out.println("Format not supported  - " + line);
                     continue;
                 }
 
                 BigDecimal salary = new BigDecimal(split[2]);
                 BigDecimal check = new BigDecimal(split[2]).setScale(2, RoundingMode.FLOOR);
 
-                if (split[0].isEmpty()) {
+                if (split[0].trim().isEmpty()) {
                     System.out.println("employeeName - incorrect :" + line);
                     continue;
                 }
@@ -63,7 +63,6 @@ public class ReadFileTxt implements ReadFile {
 
             System.out.println("Error: " + e.getMessage());
         }
-        view.setMaxSize(employeeNameMaxSize);
         return departments;
     }
 

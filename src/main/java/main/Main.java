@@ -4,18 +4,19 @@ import company.Departments;
 import human.Employee;
 import readfile.ReadFile;
 import readfile.ReadFileTxt;
+import transference.Transference;
 import viewdepartments.View;
 
 import java.util.List;
 
 
-public class Transference {
+public class Main {
 
     public static void main(String[] args) {
 
         if (args.length == 0) {
-            System.out.println("Invalid Java program file name");
-            System.exit(0);
+            System.out.println("The path to the file is not specified correctly");
+            return;
         }
         String filePath = args[0];
         View view = new View();
@@ -25,12 +26,12 @@ public class Transference {
 
         if (departments.getDepartments().isEmpty()) {
             System.out.println("Departments empty");
-            System.exit(0);
+            return;
         }
 
-        view.viewDepartments(departments);
-        List<Employee> candidates = View.findCandidates(departments);
-        View.moveCandidates(departments, candidates);
+        System.out.println(view.viewDepartments(departments));
+        List<Employee> candidates = Transference.findCandidates(departments);
+        Transference.moveCandidates(departments, candidates);
 
 
     }

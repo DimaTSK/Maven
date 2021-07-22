@@ -11,64 +11,17 @@ import java.util.List;
 public class View {
 
 
-    private int maxSize;
-
-
-    public void setMaxSize(int maxSize){
-        this.maxSize=maxSize;
-    }
-
-    public int getMaxSize() {
-        return maxSize;
-    }
-
-    public  void viewDepartments(Departments departments) {
+    public String viewDepartments(Departments departments) {
+        StringBuilder data = new StringBuilder();
         for (Department department : departments.getDepartments()) {
-            department.print(getMaxSize());
-            System.out.println("-------");
-        }
+            data.append(department.print());
 
+        }
+        return data.toString();
     }
 
 
-    public static List<Employee>  findCandidates(Departments departments) {
-        List<Employee> candidates = new ArrayList<>();
-        for (Department department : departments.getDepartments()) {
 
-            if (department.getEmployeeList().size() < 2) {
-                continue;
-            }
-            BigDecimal avgSalary = department.getAvgSalary();
-            //BigDecimal totalSalary = department.getSalary();
-            for (Employee employee : department.getEmployeeList()) {
-                // BigDecimal localAvgSalary = totalSalary.subtract(employee.getSalary()).divide(BigDecimal.valueOf(countEmployees - 1), 2, RoundingMode.HALF_UP);
-                if (avgSalary.compareTo(employee.getSalary()) > 0) {
-                    //System.out.println("Candidate " + employee.getName() + ", Avgsalary before = " + avgSalary + ", Avgsalary after =  " + localAvgSalary);
-
-                    candidates.add(employee);
-                }
-
-            }
-        }
-        return candidates;
-    }
-
-    public static void moveCandidates(Departments departments, List<Employee> candidates) {
-        for (Employee candidate : candidates) {
-            for (Department department : departments.getDepartments()) {
-                BigDecimal avgSalary = department.getAvgSalary();
-
-                if (avgSalary.compareTo(candidate.getSalary()) < 0) {
-                    department.addEmployee(candidate);
-                    BigDecimal newAvgSalary = department.getAvgSalary();
-                    department.removeLastEmployee();
-                    System.out.println("Candidate - " + candidate.getName() + ", Avgsalary before = " + avgSalary + ", Avgsalary after =  " + newAvgSalary + ", In to department name = " + department.getName());
-
-                }
-
-            }
-        }
-    }
 
 
 }
