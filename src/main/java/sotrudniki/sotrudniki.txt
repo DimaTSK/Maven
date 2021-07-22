@@ -1,0 +1,12 @@
+dima;Programming branch;2;4000
+sfsa;asddada;fdssasa;sdad
+lesha;QA branch;60000
+sasha;Analytics branch;40000
+masha;Programming branch;500000
+jul;Analytics branch;3320.4356
+misha;Programming branch;7000
+oleg;Programming branch;90000
+olga;Analytics branch;30000
+olga;Analytics branch;40000
+irina;QA branch;17000
+egor;QA branch;80000
