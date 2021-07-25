@@ -63,13 +63,6 @@ public class Department {
         getEmployeeList().remove(getEmployeeList().size() - 1);
     }
 
-    public void removeEmployee(Employee employee) {
-        int index = getEmployeeList().indexOf(employee);
-        if (index == -1) {
-            return;
-        }
-        getEmployeeList().remove(index);
-    }
 
     public String getName() {
         return name;

@@ -1,6 +1,7 @@
 package main;
 
 import company.Departments;
+import human.Candidate;
 import human.Employee;
 import readfile.ReadFile;
 import readfile.ReadFileTxt;
@@ -30,7 +31,7 @@ public class Main {
         }
 
         System.out.println(view.viewDepartments(departments));
-        List<Employee> candidates = Transference.findCandidates(departments);
+        List<Candidate> candidates = Transference.findCandidates(departments);
         Transference.moveCandidates(departments, candidates);
 
 

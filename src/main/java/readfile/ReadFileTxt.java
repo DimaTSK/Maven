@@ -1,6 +1,7 @@
 package readfile;
 
 import company.Departments;
+import human.Employee;
 import viewdepartments.View;
 
 import java.io.FileInputStream;
@@ -16,47 +17,17 @@ public class ReadFileTxt implements ReadFile {
 
     @Override
     public Departments readFile(String filePath, View view) {
-        int employeeNameMaxSize = -1;
         Departments departments = new Departments();
         try (Scanner scanner = new Scanner(new FileInputStream(filePath))) {
             while (scanner.hasNext()) {
                 String line = scanner.nextLine();
                 String[] split = line.split(";");
-                if (split.length != 3) {
-                    System.out.println("Format not supported  - " + line);
+                if (!checkFile(split, line)) {
                     continue;
                 }
 
-                BigDecimal salary = new BigDecimal(split[2]);
-                BigDecimal check = new BigDecimal(split[2]).setScale(2, RoundingMode.FLOOR);
+                departments.addDepartment(split[1]).addEmployee(new Employee(split[0],split[2]));
 
-                if (split[0].trim().isEmpty()) {
-                    System.out.println("employeeName - incorrect :" + line);
-                    continue;
-                }
-                if (split[1].isEmpty()) {
-                    System.out.println("departmentName - incorrect : " + line);
-                    continue;
-                }
-                if (salary.compareTo(BigDecimal.valueOf(0)) < 0) {
-                    System.out.println("salary - incorrect, negative : " + line);
-                    continue;
-                }
-                if (salary.subtract(check).compareTo(BigDecimal.valueOf(0.001)) > 0) {
-                    System.out.println("salary - incorrect : " + line);
-                    continue;
-                }
-
-
-                List<String> oneLine = new ArrayList<>();
-                oneLine.add(split[0]);
-                oneLine.add(split[1]);
-                oneLine.add(split[2]);
-                departments.addDepartment(oneLine);
-
-                if (split[0].length() > employeeNameMaxSize) {
-                    employeeNameMaxSize = split[0].length();
-                }
 
             }
         } catch (FileNotFoundException e) {
@@ -64,6 +35,35 @@ public class ReadFileTxt implements ReadFile {
             System.out.println("Error: " + e.getMessage());
         }
         return departments;
+    }
+
+     public boolean checkFile(String [] split,String line) {
+
+        if (split.length != 3) {
+            System.out.println("Format not supported  - " + line);
+            return false;
+        }
+
+        BigDecimal salary = new BigDecimal(split[2]);
+        BigDecimal check = new BigDecimal(split[2]).setScale(2, RoundingMode.FLOOR);
+
+        if (split[0].trim().isEmpty()) {
+            System.out.println("employeeName - incorrect :" + line);
+            return false;
+        }
+        if (split[1].isEmpty()) {
+            System.out.println("departmentName - incorrect : " + line);
+            return false;
+        }
+        if (salary.compareTo(BigDecimal.valueOf(0)) < 0) {
+            System.out.println("salary - incorrect, negative : " + line);
+            return false;
+        }
+        if (salary.subtract(check).compareTo(BigDecimal.valueOf(0.001)) > 0) {
+            System.out.println("salary - incorrect : " + line);
+            return false;
+        }
+        return true;
     }
 
 }

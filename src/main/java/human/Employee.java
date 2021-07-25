@@ -3,14 +3,15 @@ package human;
 import viewdepartments.View;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Employee {
     private String name;
     private BigDecimal salary;
 
-    public Employee(String name, BigDecimal salary) {
+    public Employee(String name, String stringSalary) {
         this.name = name;
-        this.salary = salary;
+        this.salary = new BigDecimal(stringSalary).setScale(2, RoundingMode.HALF_UP);
     }
 
     public void setName(String name) {
@@ -21,8 +22,8 @@ public class Employee {
         return salary;
     }
 
-     String print(Department department) {
-        return  String.format("%-" + department.getMaxSizeName()+ "s - %"+department.getMaxSizeSalary()+"s  %n", getName(), getSalary());
+    String print(Department department) {
+        return String.format("%-" + department.getMaxSizeName() + "s - %" + department.getMaxSizeSalary() + "s  %n", getName(), getSalary());
 
     }
 
