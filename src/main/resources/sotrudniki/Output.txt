@@ -1,0 +1,20 @@
+Format not supported  - [sfsa, asddada, fdssasa, sdad]
+salary - incorrect : [jul, Analytics branch, 3320.4356]
+Department - Analytics branch :  Average salary -  36666.67
+sasha - 40000.00  
+olga  - 30000.00  
+olga  - 40000.00  
+-------
+Department - QA branch :  Average salary -  52333.33
+lesha - 60000.00  
+irina - 17000.00  
+egor  - 80000.00  
+-------
+Department - Programming branch :  Average salary -  150250.00
+dima  -   4000.00  
+masha - 500000.00  
+misha -   7000.00  
+oleg  -  90000.00  
+-------
+Candidate - oleg, Avgsalary before = 36666.67, Avgsalary after =  50000.00, In to department name = Analytics branch, From department name = Programming branch , From avgSalary = 170333.33
+Candidate - oleg, Avgsalary before = 52333.33, Avgsalary after =  61750.00, In to department name = QA branch, From department name = Programming branch , From avgSalary = 170333.33

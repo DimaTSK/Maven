@@ -2,37 +2,54 @@ package main;
 
 import company.Departments;
 import human.Candidate;
-import human.Employee;
 import readfile.ReadFile;
-import readfile.ReadFileTxt;
+import readfile.ReadFileEmployees;
+import readfile.ReadFileInfo;
 import transference.Transference;
-import viewdepartments.View;
+import viewdepartments.PrintInfoDep;
 
+import java.io.*;
 import java.util.List;
 
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+
 
         if (args.length == 0) {
             System.out.println("The path to the file is not specified correctly");
             return;
         }
         String filePath = args[0];
-        View view = new View();
-        ReadFile readFile = new ReadFileTxt();
+        PrintInfoDep printInfoDep = new PrintInfoDep();
+        ReadFile readFile = new ReadFileEmployees();
 
-        Departments departments = readFile.readFile(filePath, view);
+        ReadFileInfo readFileInfo  = readFile.readFile(filePath);
+        Departments departments=readFileInfo.getDepartments();
 
         if (departments.getDepartments().isEmpty()) {
             System.out.println("Departments empty");
             return;
         }
-
-        System.out.println(view.viewDepartments(departments));
         List<Candidate> candidates = Transference.findCandidates(departments);
-        Transference.moveCandidates(departments, candidates);
+
+
+        File file = new File("C:\\Users\\dgladilin\\IdeaProjects\\maven\\src\\main\\resources\\sotrudniki\\Output.txt");
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
+
+
+        bufferedWriter.append(readFileInfo.getErr());
+        bufferedWriter.append(printInfoDep.viewDepartments(departments));
+        bufferedWriter.append(Transference.moveCandidates(departments,candidates));
+        bufferedWriter.flush();
+        bufferedWriter.close();
+
+
+
+        System.out.println(readFileInfo.getErr());
+        System.out.println(printInfoDep.viewDepartments(departments));
+        System.out.println(Transference.moveCandidates(departments, candidates));
 
 
     }

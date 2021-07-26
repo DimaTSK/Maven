@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class View {
+public class PrintInfoDep {
 
 
     public String viewDepartments(Departments departments) {

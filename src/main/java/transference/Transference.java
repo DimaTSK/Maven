@@ -19,10 +19,10 @@ public class Transference {
                 continue;
             }
             BigDecimal avgSalary = department.getAvgSalary();
-            for (Employee employee: department.getEmployeeList()) {
+            for (Employee employee : department.getEmployeeList()) {
                 if (avgSalary.compareTo(employee.getSalary()) > 0) {
 
-                    candidates.add(new Candidate(employee,department.getName()));
+                    candidates.add(new Candidate(employee, department.getName()));
                 }
 
             }
@@ -30,21 +30,33 @@ public class Transference {
         return candidates;
     }
 
-    public static void moveCandidates(Departments departments, List<Candidate> candidates) {
+    public static String moveCandidates(Departments departments, List<Candidate> candidates) {
+        StringBuilder result = new StringBuilder();
         for (Candidate candidate : candidates) {
             for (Department department : departments.getDepartments()) {
-                BigDecimal avgSalary = department.getAvgSalary();
+                if (!(department.getName().equals(candidate.getDepartmentName()))) {
+                    BigDecimal avgSalary = department.getAvgSalary();
 
-                if (avgSalary.compareTo(candidate.getEmployee().getSalary()) < 0) {
-                    department.addEmployee(candidate.getEmployee());
-                    BigDecimal newAvgSalary = department.getAvgSalary();
-                    department.removeLastEmployee();
-                    System.out.println("Candidate - " + candidate.getEmployee().getName() + ", Avgsalary before = " + avgSalary + ", Avgsalary after =  " + newAvgSalary + ", In to department name = " + department.getName() + ", From department name = " + candidate.getDepartmentName());
+                    if (avgSalary.compareTo(candidate.getEmployee().getSalary()) < 0) {
+                        department.addEmployee(candidate.getEmployee());
+                        BigDecimal newAvgSalary = department.getAvgSalary();
+                        department.removeLastEmployee();
+                        Department fromDepartment = departments.getDepartment(candidate.getDepartmentName());
+                        BigDecimal fromAvgSalary = fromDepartment.getAvgSalaryWithOutEmployee(candidate.getEmployee());
+                        result.append("Candidate - ").append(candidate.getEmployee().getName());
+                        result.append(", Avgsalary before = ").append(avgSalary);
+                        result.append(", Avgsalary after =  ").append(newAvgSalary);
+                        result.append(", In to department name = ").append(department.getName());
+                        result.append(", From department name = ").append(candidate.getDepartmentName());
+                        result.append(" , From avgSalary = ").append(fromAvgSalary);
+                        result.append("\n");
+
+                    }
+
 
                 }
 
             }
-        }
+        }return result.toString();
     }
-
 }

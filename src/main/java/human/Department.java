@@ -1,7 +1,5 @@
 package human;
 
-import viewdepartments.View;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -55,6 +53,12 @@ public class Department {
         getEmployeeList().add(employee);
     }
 
+    public BigDecimal getAvgSalaryWithOutEmployee(Employee employee){
+        BigDecimal salary = getSalary();
+        BigDecimal salaryWithOutEmployee = salary.subtract(employee.getSalary());
+        BigDecimal avgSalaryWithOutEmployee = salaryWithOutEmployee.divide(BigDecimal.valueOf(getEmployeeList().size()-1),2,RoundingMode.HALF_UP);
+        return avgSalaryWithOutEmployee;
+    }
 
     public void removeLastEmployee() {
         if (getEmployeeList().isEmpty()) {

@@ -1,7 +1,5 @@
 package human;
 
-import viewdepartments.View;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 

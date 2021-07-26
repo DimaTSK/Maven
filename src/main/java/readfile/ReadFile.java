@@ -1,8 +1,8 @@
 package readfile;
 
 import company.Departments;
-import viewdepartments.View;
+import viewdepartments.PrintInfoDep;
 
 public interface ReadFile {
-     Departments readFile(String filePath, View view);
+     ReadFileInfo readFile(String filePath);
 }
