@@ -26,10 +26,5 @@ public class Departments {
         return new ArrayList<>(departments.values());
     }
 
-    public Department getDepartment(String name){
-        if (departments.containsKey(name)){
-            return departments.get(name);
-        }
-        throw new NullPointerException();
-    }
+
 }

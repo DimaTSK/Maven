@@ -14,7 +14,7 @@ import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args)  {
 
 
         if (args.length == 0) {
@@ -34,16 +34,28 @@ public class Main {
         }
         List<Candidate> candidates = Transference.findCandidates(departments);
 
+        String fileoutput= "Output.txt";
+        if(args.length>1) {
+            fileoutput=args[1];
+        }
+            File file = new File(fileoutput);
 
-        File file = new File("C:\\Users\\dgladilin\\IdeaProjects\\maven\\src\\main\\resources\\sotrudniki\\Output.txt");
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
+
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))){
+
+            bufferedWriter.append(readFileInfo.getErr());
+            bufferedWriter.append(printInfoDep.viewDepartments(departments));
+            bufferedWriter.append(Transference.moveCandidates(departments,candidates));
+            bufferedWriter.flush();
 
 
-        bufferedWriter.append(readFileInfo.getErr());
-        bufferedWriter.append(printInfoDep.viewDepartments(departments));
-        bufferedWriter.append(Transference.moveCandidates(departments,candidates));
-        bufferedWriter.flush();
-        bufferedWriter.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+
+
+
 
 
 
