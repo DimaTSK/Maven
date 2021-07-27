@@ -1,5 +1,7 @@
 package human;
 
+import writefile.WriteFileInfCompany;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -85,14 +87,14 @@ public class Department {
         return getSalary().divide(BigDecimal.valueOf(getEmployeeList().size()), 2, RoundingMode.HALF_UP);
     }
 
-    public String print() {
-        StringBuilder dataDepartment = new StringBuilder();
-        dataDepartment.append("Department - ").append(getName()).append(" : ").append(" Average salary -  ").append(getAvgSalary()).append("\n");
+    public void print(WriteFileInfCompany writeFileInfCompany) {
+
+        writeFileInfCompany.writeFile("Department - "+getName()+" : "+" Average salary -  "+getAvgSalary()+("\n"));
         for (Employee employee : getEmployeeList()) {
-            dataDepartment.append(employee.print(this));
+            writeFileInfCompany.writeFile(employee.print(this));
         }
-        dataDepartment.append("-------\n");
-        return dataDepartment.toString();
+        writeFileInfCompany.writeFile("-------\n");
+
     }
 
 

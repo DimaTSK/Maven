@@ -16,5 +16,5 @@ masha - 500000.00
 misha -   7000.00  
 oleg  -  90000.00  
 -------
-Candidate - oleg, Avgsalary before = 36666.67, Avgsalary after =  50000.00, In to department name = Analytics branch, From department name = Programming branch , From avgSalary = 170333.33
-Candidate - oleg, Avgsalary before = 52333.33, Avgsalary after =  61750.00, In to department name = QA branch, From department name = Programming branch , From avgSalary = 170333.33
+Candidate - oleg, Avgsalary before = 36666.67, Avgsalary after =  50000.00, In to department name = Analytics branch, From department name = Programming branch, From avgSalary = 170333.33
+Candidate - oleg, Avgsalary before = 52333.33, Avgsalary after =  61750.00, In to department name = QA branch, From department name = Programming branch, From avgSalary = 170333.33

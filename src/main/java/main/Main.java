@@ -4,11 +4,10 @@ import company.Departments;
 import human.Candidate;
 import readfile.ReadFile;
 import readfile.ReadFileEmployees;
-import readfile.ReadFileInfo;
 import transference.Transference;
 import viewdepartments.PrintInfoDep;
+import writefile.WriteFileInfCompany;
 
-import java.io.*;
 import java.util.List;
 
 
@@ -25,8 +24,14 @@ public class Main {
         PrintInfoDep printInfoDep = new PrintInfoDep();
         ReadFile readFile = new ReadFileEmployees();
 
-        ReadFileInfo readFileInfo  = readFile.readFile(filePath);
-        Departments departments=readFileInfo.getDepartments();
+        String fileoutput= "Output.txt";
+        if(args.length>1) {
+            fileoutput=args[1];
+        }
+
+        WriteFileInfCompany writeFileInfCompany = new WriteFileInfCompany(fileoutput);
+
+        Departments departments=readFile.readFile(filePath,writeFileInfCompany);
 
         if (departments.getDepartments().isEmpty()) {
             System.out.println("Departments empty");
@@ -34,13 +39,14 @@ public class Main {
         }
         List<Candidate> candidates = Transference.findCandidates(departments);
 
-        String fileoutput= "Output.txt";
-        if(args.length>1) {
-            fileoutput=args[1];
-        }
-            File file = new File(fileoutput);
 
 
+
+
+        printInfoDep.viewDepartments(departments,writeFileInfCompany);
+        Transference.moveCandidates(departments,candidates,writeFileInfCompany);
+
+        /*
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))){
 
             bufferedWriter.append(readFileInfo.getErr());
@@ -52,16 +58,15 @@ public class Main {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+*/
 
 
 
 
 
-
-
-        System.out.println(readFileInfo.getErr());
-        System.out.println(printInfoDep.viewDepartments(departments));
-        System.out.println(Transference.moveCandidates(departments, candidates));
+       // System.out.println(readFileInfo.getErr());
+      // System.out.println(printInfoDep.viewDepartments(departments));
+     //   System.out.println(Transference.moveCandidates(departments, candidates));
 
 
     }

@@ -2,7 +2,8 @@ package readfile;
 
 import company.Departments;
 import viewdepartments.PrintInfoDep;
+import writefile.WriteFileInfCompany;
 
 public interface ReadFile {
-     ReadFileInfo readFile(String filePath);
+     Departments readFile(String filePath, WriteFileInfCompany writeFileInfCompany);
 }
