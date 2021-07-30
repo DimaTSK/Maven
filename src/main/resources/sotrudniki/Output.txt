@@ -18,3 +18,9 @@ oleg  -  90000.00
 -------
 Candidate - oleg, Avgsalary before = 36666.67, Avgsalary after =  50000.00, In to department name = Analytics branch, From department name = Programming branch, From avgSalary = 170333.33
 Candidate - oleg, Avgsalary before = 52333.33, Avgsalary after =  61750.00, In to department name = QA branch, From department name = Programming branch, From avgSalary = 170333.33
+Name employees - lesha irina , From department - QA branch, In to department -Analytics branch, Old Avgsalary -  36666.67, New Avgsalary -  37400.00
+Name employees - irina egor , From department - QA branch, In to department -Analytics branch, Old Avgsalary -  36666.67, New Avgsalary -  41400.00
+Name employees - dima oleg , From department - Programming branch, In to department -Analytics branch, Old Avgsalary -  36666.67, New Avgsalary -  40800.00
+Name employees - misha oleg , From department - Programming branch, In to department -Analytics branch, Old Avgsalary -  36666.67, New Avgsalary -  41400.00
+Name employees - dima oleg , From department - Programming branch, In to department -Analytics branch, Old Avgsalary -  36666.67, New Avgsalary -  40800.00
+Name employees - misha oleg , From department - Programming branch, In to department -Analytics branch, Old Avgsalary -  36666.67, New Avgsalary -  41400.00

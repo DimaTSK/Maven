@@ -14,7 +14,9 @@ public class Department {
     private int maxSizeName;
     private  int maxSizeSalary;
 
-
+    public Employee getEmployee(int i){
+        return getEmployeeList().get(i);
+    }
     public void setEmployeeList(List<Employee> employeeList) {
         this.employeeList = employeeList;
     }
@@ -41,6 +43,10 @@ public class Department {
 
     public Department(String name) {
         this.name = name;
+    }
+
+    public Department(){
+
     }
 
     public void addEmployee(Employee employee) {

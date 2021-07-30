@@ -2,12 +2,15 @@ package main;
 
 import company.Departments;
 import human.Candidate;
+import human.Department;
 import readfile.ReadFile;
 import readfile.ReadFileEmployees;
 import transference.Transference;
+import transference.TransferenceGroup;
 import viewdepartments.PrintInfoDep;
 import writefile.WriteFileInfCompany;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -46,6 +49,27 @@ public class Main {
         printInfoDep.viewDepartments(departments,writeFileInfCompany);
         Transference.moveCandidates(departments,candidates,writeFileInfCompany);
 
+        List<Department> listDepRes = new ArrayList<>();
+        for (Department department:departments.getDepartments()){
+            listDepRes.addAll(TransferenceGroup.findCandidatesGroup(department));
+        }
+
+        TransferenceGroup.moveCandidates(departments,listDepRes,writeFileInfCompany);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         /*
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))){
 
@@ -59,11 +83,6 @@ public class Main {
             System.out.println(e.getMessage());
         }
 */
-
-
-
-
-
        // System.out.println(readFileInfo.getErr());
       // System.out.println(printInfoDep.viewDepartments(departments));
      //   System.out.println(Transference.moveCandidates(departments, candidates));
