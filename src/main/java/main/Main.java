@@ -2,6 +2,7 @@ package main;
 
 import company.Departments;
 import human.Candidate;
+import human.CandidateGroup;
 import human.Department;
 import readfile.ReadFile;
 import readfile.ReadFileEmployees;
@@ -49,13 +50,11 @@ public class Main {
         printInfoDep.viewDepartments(departments,writeFileInfCompany);
         Transference.moveCandidates(departments,candidates,writeFileInfCompany);
 
-        List<Department> listDepRes = new ArrayList<>();
-        for (Department department:departments.getDepartments()){
+        List<CandidateGroup> listDepRes = new ArrayList<>();
+        for (Department department :departments.getDepartments()){
             listDepRes.addAll(TransferenceGroup.findCandidatesGroup(department));
         }
-
         TransferenceGroup.moveCandidates(departments,listDepRes,writeFileInfCompany);
-
 
 
 
