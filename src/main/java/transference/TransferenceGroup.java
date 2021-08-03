@@ -1,8 +1,6 @@
 package transference;
 
 import company.Departments;
-import human.Candidate;
-import human.CandidateGroup;
 import human.Department;
 import human.Employee;
 import writefile.WriteFileInfCompany;
@@ -14,92 +12,67 @@ import java.util.List;
 
 public class TransferenceGroup {
 
-    public static List<CandidateGroup> findCandidatesGroup(Department department) {
-        List<CandidateGroup> result = new ArrayList<>();
-        List<CandidateGroup> lists = new ArrayList<>();
 
-        for (int i = 2; i < department.getEmployeeList().size(); i++) {
+    public static void transferenceGroup(Departments departments, WriteFileInfCompany writeFileInfCompany) {
 
-            lists.addAll(combinations2(department, i, 0, new Employee[i]));
+        for (Department department : departments.getDepartments()) {
 
-
-            BigDecimal departmentAvgSalary = department.getAvgSalary();
-
-            for (CandidateGroup candidateGroup : lists) {
-
-
-                if (departmentAvgSalary.compareTo(candidateGroup.getAvgSalary()) > 0) {
-
-
-                    result.add(candidateGroup);
-                }
+            for (int i = 2; i < department.getEmployeeList().size(); i++) {
+                transferCombinationGroup(department, i, 0, new Employee[i], departments, writeFileInfCompany);
 
             }
-            lists.clear();
-
         }
-        return result;
 
     }
 
 
-    static List<CandidateGroup> combinations2(Department department, int len, int startPosition, Employee[] result) {
-        List<CandidateGroup> resultMeth = new ArrayList<>();
-
+    static void transferCombinationGroup(Department department, int len, int startPosition, Employee[] result, Departments departments, WriteFileInfCompany writeFileInfCompany) {
 
         if (len == 0) {
-            CandidateGroup candidateGroup = new CandidateGroup(department);
+            Department departmentGroup = new Department(department.getName());
 
             for (Employee employee : result) {
-                candidateGroup.addEmployee(employee);
+                departmentGroup.addEmployee(employee);
 
             }
+            BigDecimal groupAvgSalary = departmentGroup.getAvgSalary();
+            if (department.getAvgSalary().compareTo(groupAvgSalary) > 0) {
+                for (Department departmentCheck : departments.getDepartments()) {
+                    if (!(departmentCheck.equals(department))) {
+                        BigDecimal avgSalary = departmentCheck.getAvgSalary();
+                        if (avgSalary.compareTo(groupAvgSalary) < 0) {
+                            writeFileInfCompany.writeFile(showString(departmentGroup, departmentCheck, avgSalary));
 
-            resultMeth.add(candidateGroup);
-            return resultMeth;
+                        }
+                    }
+                }
+            }
+            return;
         }
         for (int i = startPosition; i <= department.getEmployeeList().size() - len; i++) {
             result[result.length - len] = department.getEmployeeList().get(i);
+            transferCombinationGroup(department, len - 1, i + 1, result, departments, writeFileInfCompany);
 
-            resultMeth.addAll(combinations2(department, len - 1, i + 1, result));
         }
-        return resultMeth;
+
     }
 
-    public static void moveCandidates(Departments departments, List<CandidateGroup> candidateGroups, WriteFileInfCompany writeFileInfCompany) {
-        for (CandidateGroup candidateGroup : candidateGroups) {
-            BigDecimal groupAvgSalary = candidateGroup.getAvgSalary();
-            for (Department department : departments.getDepartments()) {
-                if (!(department.equals(candidateGroup.getDepartment()))) {
-                    BigDecimal avgSalary = department.getAvgSalary();
-                    if (avgSalary.compareTo(groupAvgSalary) < 0) {
+    public static String showString(Department departmentGroup, Department department, BigDecimal departmentAvgSalary) {
 
-                        StringBuilder stringData = new StringBuilder();
-                        stringData.append("Name employees - ");
-                        for (Employee employee : candidateGroup.getCandidateList()) {
-                            stringData.append(employee.getName()).append(" ");
-                        }
-                        stringData.append(", From department - ").append(candidateGroup.getDepartment().getName());
-                        stringData.append(", In to department -").append(department.getName());
-
-                        BigDecimal newAvgSalary = (department.getSalary().add(candidateGroup.getSalary())).divide(BigDecimal.valueOf(department.getEmployeeList().size() + candidateGroup.getCandidateList().size())).setScale(2, RoundingMode.HALF_UP);
-                        stringData.append(", Old Avgsalary -  ").append(avgSalary);
-                        stringData.append(", New Avgsalary -  ").append(newAvgSalary).append("\n");
-
-                        writeFileInfCompany.writeFile(stringData.toString());
-
-
-                    }
-
-                }
-            }
+        StringBuilder stringData = new StringBuilder();
+        stringData.append("Name employees - ");
+        for (Employee employee : departmentGroup.getEmployeeList()) {
+            stringData.append(employee.getName()).append(" ");
         }
+        stringData.append(", From department - ").append(departmentGroup.getName());
+        stringData.append(", In to department -").append(department.getName());
+
+        BigDecimal newAvgSalary = (department.getSalary().add(departmentGroup.getSalary())).divide(BigDecimal.valueOf(department.getEmployeeList().size() + departmentGroup.getEmployeeList().size()), 2, RoundingMode.HALF_UP);
+        stringData.append(", Old Avgsalary -  ").append(departmentAvgSalary);
+        stringData.append(", New Avgsalary -  ").append(newAvgSalary).append("\n");
+
+        return stringData.toString();
 
 
     }
 }
-
-
-
-
-

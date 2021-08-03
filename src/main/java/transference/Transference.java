@@ -39,12 +39,8 @@ public class Transference {
             for (Department department : departments.getDepartments()) {
                 if (!(department.equals(candidate.getDepartment()))) {
                     BigDecimal avgSalary = department.getAvgSalary();
-
                     if (avgSalary.compareTo(candidate.getEmployee().getSalary()) < 0) {
-                        //department.addEmployee(candidate.getEmployee()); // изменить расчет зп и убрать ремув
-                        //BigDecimal newAvgSalary = department.getAvgSalary();
-                        BigDecimal newAvgSalary = (department.getSalary().add(candidate.getEmployee().getSalary())).divide(BigDecimal.valueOf(department.getEmployeeList().size() + 1)).setScale(2, RoundingMode.HALF_UP);
-                        //department.removeLastEmployee();
+                        BigDecimal newAvgSalary = (department.getSalary().add(candidate.getEmployee().getSalary())).divide(BigDecimal.valueOf(department.getEmployeeList().size()+1),2,RoundingMode.HALF_UP);
                         Department fromDepartment = candidate.getDepartment();
                         BigDecimal fromAvgSalary = fromDepartment.getAvgSalaryWithOutEmployee(candidate.getEmployee());
                         writeFileInfCompany.writeFile("Candidate - " + candidate.getEmployee().getName() + ", Avgsalary before = " + avgSalary +

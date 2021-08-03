@@ -64,8 +64,7 @@ public class Department {
     public BigDecimal getAvgSalaryWithOutEmployee(Employee employee){
         BigDecimal salary = getSalary();
         BigDecimal salaryWithOutEmployee = salary.subtract(employee.getSalary());
-        BigDecimal avgSalaryWithOutEmployee = salaryWithOutEmployee.divide(BigDecimal.valueOf(getEmployeeList().size()-1),2,RoundingMode.HALF_UP);
-        return avgSalaryWithOutEmployee;
+        return salaryWithOutEmployee.divide(BigDecimal.valueOf(getEmployeeList().size()-1),2,RoundingMode.HALF_UP);
     }
 
     public void removeLastEmployee() {
@@ -87,7 +86,7 @@ public class Department {
 
     public BigDecimal getAvgSalary() {
         if (getEmployeeList().size() == 0) {
-            return BigDecimal.valueOf(0);
+            return BigDecimal.ZERO;
         }
 
         return getSalary().divide(BigDecimal.valueOf(getEmployeeList().size()), 2, RoundingMode.HALF_UP);
@@ -105,7 +104,7 @@ public class Department {
 
 
     public BigDecimal getSalary() {
-        BigDecimal sum = BigDecimal.valueOf(0);
+        BigDecimal sum = BigDecimal.ZERO;
         for (Employee employee : getEmployeeList()) {
             sum = sum.add(employee.getSalary());
         }

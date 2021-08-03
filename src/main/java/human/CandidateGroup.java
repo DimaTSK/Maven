@@ -13,9 +13,6 @@ public class CandidateGroup {
         return candidateList;
     }
 
-    public CandidateGroup() {
-    }
-
     public CandidateGroup(Department department) {
         this.department = department;
     }

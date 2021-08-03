@@ -40,8 +40,4 @@ public class Employee {
         return name;
     }
 
-    public void setSalary(BigDecimal salary) {
-        this.salary = salary;
-    }
-
 }

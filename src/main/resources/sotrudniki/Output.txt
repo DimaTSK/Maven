@@ -10,17 +10,17 @@ lesha - 60000.00
 irina - 17000.00  
 egor  - 80000.00  
 -------
-Department - Programming branch :  Average salary -  150250.00
+Department - Programming branch :  Average salary -  152750.00
 dima  -   4000.00  
 masha - 500000.00  
-misha -   7000.00  
+misha -  17000.00  
 oleg  -  90000.00  
 -------
-Candidate - oleg, Avgsalary before = 36666.67, Avgsalary after =  50000.00, In to department name = Analytics branch, From department name = Programming branch, From avgSalary = 170333.33
-Candidate - oleg, Avgsalary before = 52333.33, Avgsalary after =  61750.00, In to department name = QA branch, From department name = Programming branch, From avgSalary = 170333.33
+Candidate - oleg, Avgsalary before = 36666.67, Avgsalary after =  50000.00, In to department name = Analytics branch, From department name = Programming branch, From avgSalary = 173666.67
+Candidate - oleg, Avgsalary before = 52333.33, Avgsalary after =  61750.00, In to department name = QA branch, From department name = Programming branch, From avgSalary = 173666.67
 Name employees - lesha irina , From department - QA branch, In to department -Analytics branch, Old Avgsalary -  36666.67, New Avgsalary -  37400.00
 Name employees - irina egor , From department - QA branch, In to department -Analytics branch, Old Avgsalary -  36666.67, New Avgsalary -  41400.00
 Name employees - dima oleg , From department - Programming branch, In to department -Analytics branch, Old Avgsalary -  36666.67, New Avgsalary -  40800.00
-Name employees - misha oleg , From department - Programming branch, In to department -Analytics branch, Old Avgsalary -  36666.67, New Avgsalary -  41400.00
-Name employees - dima oleg , From department - Programming branch, In to department -Analytics branch, Old Avgsalary -  36666.67, New Avgsalary -  40800.00
-Name employees - misha oleg , From department - Programming branch, In to department -Analytics branch, Old Avgsalary -  36666.67, New Avgsalary -  41400.00
+Name employees - misha oleg , From department - Programming branch, In to department -Analytics branch, Old Avgsalary -  36666.67, New Avgsalary -  43400.00
+Name employees - misha oleg , From department - Programming branch, In to department -QA branch, Old Avgsalary -  52333.33, New Avgsalary -  52800.00
+Name employees - dima misha oleg , From department - Programming branch, In to department -Analytics branch, Old Avgsalary -  36666.67, New Avgsalary -  36833.33

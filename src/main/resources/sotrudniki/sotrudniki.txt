@@ -4,7 +4,7 @@ lesha;QA branch;60000
 sasha;Analytics branch;40000
 masha;Programming branch;500000
 jul;Analytics branch;3320.4356
-misha;Programming branch;7000
+misha;Programming branch;17000
 oleg;Programming branch;90000
 olga;Analytics branch;30000
 olga;Analytics branch;40000
