@@ -2,16 +2,12 @@ package main;
 
 import company.Departments;
 import human.Candidate;
-import human.CandidateGroup;
-import human.Department;
 import readfile.ReadFile;
 import readfile.ReadFileEmployees;
 import transference.Transference;
 import transference.TransferenceGroup;
 import viewdepartments.PrintInfoDep;
 import writefile.WriteFileInfCompany;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -45,8 +41,6 @@ public class Main {
         Transference.moveCandidates(departments, candidates, writeFileInfCompany);
 
         TransferenceGroup.transferenceGroup(departments, writeFileInfCompany);
-
-
     }
 
 }

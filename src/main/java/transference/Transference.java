@@ -5,11 +5,9 @@ import human.Candidate;
 import human.Department;
 import human.Employee;
 import writefile.WriteFileInfCompany;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Transference {

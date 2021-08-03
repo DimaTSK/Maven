@@ -7,11 +7,9 @@ import writefile.WriteFileInfCompany;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class TransferenceGroup {
-
 
     public static void transferenceGroup(Departments departments, WriteFileInfCompany writeFileInfCompany) {
 
@@ -24,7 +22,6 @@ public class TransferenceGroup {
         }
 
     }
-
 
     static void transferCombinationGroup(Department department, int len, int startPosition, Employee[] result, Departments departments, WriteFileInfCompany writeFileInfCompany) {
 

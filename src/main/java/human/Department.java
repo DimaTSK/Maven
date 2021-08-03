@@ -14,16 +14,6 @@ public class Department {
     private int maxSizeName;
     private  int maxSizeSalary;
 
-    public Employee getEmployee(int i){
-        return getEmployeeList().get(i);
-    }
-    public void setEmployeeList(List<Employee> employeeList) {
-        this.employeeList = employeeList;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public int getMaxSizeName() {
         return maxSizeName;
@@ -66,14 +56,6 @@ public class Department {
         BigDecimal salaryWithOutEmployee = salary.subtract(employee.getSalary());
         return salaryWithOutEmployee.divide(BigDecimal.valueOf(getEmployeeList().size()-1),2,RoundingMode.HALF_UP);
     }
-
-    public void removeLastEmployee() {
-        if (getEmployeeList().isEmpty()) {
-            return;
-        }
-        getEmployeeList().remove(getEmployeeList().size() - 1);
-    }
-
 
     public String getName() {
         return name;
